@@ -4,11 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
-
+    <link rel="stylesheet" href="/build/stencil-project.css" />
     <script type="module" src="/build/stencil-project.esm.js"></script>
     <script nomodule src="/build/stencil-project.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <wc-hc-app-drawer opened>
+      <ul slot="navigation" class="nav-list">
+        <li><a href="#">Stencil</a></li>
+        <li><a href="#">React</a></li>
+        <li><a href="#">Angular</a></li>
+        <li><a href="#">Vue</a></li>
+      </ul>
+      <div slot="site-details">
+        <h2>My Stencil App</h2>
+        <p class="site-descroption">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore quas impedit dolorem omnis accusamus ducimus fugit quidem ab facere reiciendis consequatur, dolorum,
+          architecto unde deleniti rem corporis explicabo ratione fugiat.
+        </p>
+      </div>
+    </wc-hc-app-drawer>
+
+    <script>
+      const appDrawer = document.querySelector('wc-hc-app-drawer');
+      window.addEventListener('click', function (evt) {
+        if (evt.target === appDrawer || appDrawer.contains(evt.target)) {
+          return;
+        }
+        appDrawer.opened = true;
+      });
+
+      appDrawer.addEventListener(
+        'openedChanged',
+        /**
+         * @param {CustomEvent} evt
+         * */
+        function (evt) {
+          const hasDetail = evt.detail !== undefined;
+          if (!hasDetail) return;
+          appDrawer.opened = evt.detail;
+        },
+      );
+    </script>
   </body>
 </html>

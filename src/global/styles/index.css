@@ -1,0 +1,18 @@
+.nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-list>li {
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.nav-list>li>a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-list>li>a:hover {
+    text-decoration: underline;
+}
